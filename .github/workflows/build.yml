@@ -1,0 +1,22 @@
+name: Build HWP Merger
+on: [push]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
+      - name: Build EXE
+        run: |
+          pyinstaller --onefile --noconsole main.py
+      - name: Upload EXE
+        uses: actions/upload-artifact@v3
+        with:
+          name: HWP-Merger-EXE
+          path: dist/main.exe

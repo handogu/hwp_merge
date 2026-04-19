@@ -5,8 +5,8 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.9'
       - name: Install Dependencies
@@ -16,7 +16,7 @@ jobs:
         run: |
           pyinstaller --onefile --noconsole main.py
       - name: Upload EXE
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: HWP-Merger-EXE
           path: dist/main.exe
